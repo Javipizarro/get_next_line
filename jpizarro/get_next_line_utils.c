@@ -6,7 +6,7 @@
 /*   By: jpizarro <jpizarro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 00:53:48 by jpizarro          #+#    #+#             */
-/*   Updated: 2020/05/16 13:33:19 by jpizarro         ###   ########.fr       */
+/*   Updated: 2020/05/17 20:18:17 by jpizarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 **	Computes the length of the string 's'.
 */
+
 size_t	ft_strlen(char const *s)
 {
 	size_t	i;
@@ -29,6 +30,7 @@ size_t	ft_strlen(char const *s)
 **	Copies 'n' bytes from memory area 'src' to memory area 'dst'. If 'dst' and
 **	'src' overlap, behavior is undefined. Returns the original value of 'dst'.
 */
+
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	const unsigned char *s;
@@ -52,6 +54,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 **	and returns a pointer to it. The pointer may subsequently be used as an
 **	argument to the function free(3).
 */
+
 char	*ft_strdup(char const *s1)
 {
 	char *s;
@@ -66,6 +69,7 @@ char	*ft_strdup(char const *s1)
 **	Allocates (with malloc(3)) and returns a new string, which is the
 **	result of the concatenation of ’s1’ and ’s2’.
 */
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*s;
@@ -89,6 +93,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 **	or NULL if the allocation fails. The substring begins at index 'start'
 **	and is of maximum size 'len'.
 */
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	str[len + 1];

@@ -1,7 +1,0 @@
-hyperion
-jackonbs
-maliwan
-dahl
-cov
-torgue
-pangolin

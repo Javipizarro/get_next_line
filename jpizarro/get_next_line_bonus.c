@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpizarro <jpizarro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 00:46:27 by jpizarro          #+#    #+#             */
-/*   Updated: 2020/05/18 12:44:05 by jpizarro         ###   ########.fr       */
+/*   Created: 2020/05/18 12:45:27 by jpizarro          #+#    #+#             */
+/*   Updated: 2020/05/18 13:16:45 by jpizarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,21 @@
 **	Allocates *line (with malloc(3)) and fills it with the line just read.
 **	Returns 1 if there is more lines to read, 0 if EOF has been reached, or -1
 **	if an error has ocurred.
-**	This version has an undefined behavior if, between two calls, the same file
-**	descriptor switches to a different file before EOF has been reached on the
-**	first fd.
 */
 
 #include "get_next_line.h"
 
 int		get_next_line(int fd, char **line)
 {
-	static char	*s;
+	static char	*s[4096];
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	if (!s)
-		s = ft_strdup("");
-	else if ((ft_chrpos(s, 10)) && line)
-		return (deliver_line(line, &s, 1));
-	return (deliver_line(line, &s, build_line(fd, &s)));
+	if (!s[fd])
+		s[fd] = ft_strdup("");
+	else if ((ft_chrpos(s[fd], 10)) && line)
+		return (deliver_line(line, &s[fd], 1));
+	return (deliver_line(line, &s[fd], build_line(fd, &s[fd])));
 }
 
 int		build_line(int fd, char **s)

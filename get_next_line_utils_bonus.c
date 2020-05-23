@@ -6,11 +6,11 @@
 /*   By: jpizarro <jpizarro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 12:46:48 by jpizarro          #+#    #+#             */
-/*   Updated: 2020/05/18 12:51:53 by jpizarro         ###   ########.fr       */
+/*   Updated: 2020/05/23 20:33:01 by jpizarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 /*
 **	Computes the length of the string 's'.

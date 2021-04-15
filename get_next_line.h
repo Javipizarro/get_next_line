@@ -6,7 +6,7 @@
 /*   By: jpizarro <jpizarro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 00:48:09 by jpizarro          #+#    #+#             */
-/*   Updated: 2020/05/17 20:24:27 by jpizarro         ###   ########.fr       */
+/*   Updated: 2021/04/15 11:16:55 by jpizarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ char	*ft_strdup(char const *s1);
 size_t	ft_strlen(char const *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 12
+# endif
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 12
 #endif

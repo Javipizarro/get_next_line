@@ -6,7 +6,7 @@
 /*   By: jpizarro <jpizarro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 12:45:27 by jpizarro          #+#    #+#             */
-/*   Updated: 2020/05/23 20:32:36 by jpizarro         ###   ########.fr       */
+/*   Updated: 2021/04/15 11:27:49 by jpizarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 #include "get_next_line_bonus.h"
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*s[4096];
 
@@ -33,15 +33,17 @@ int		get_next_line(int fd, char **line)
 	return (deliver_line(line, &s[fd], build_line(fd, &s[fd])));
 }
 
-int		build_line(int fd, char **s)
+int	build_line(int fd, char **s)
 {
 	char		*buff;
 	char		*tmp;
 	int			r;
 
-	if (!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buff)
 		return (-1);
-	while ((r = read(fd, buff, BUFFER_SIZE)) > 0)
+	r = read(fd, buff, BUFFER_SIZE);
+	while (r > 0)
 	{
 		tmp = *s;
 		buff[r] = 0;
@@ -50,13 +52,14 @@ int		build_line(int fd, char **s)
 		tmp = NULL;
 		if ((ft_chrpos(buff, 10)))
 			break ;
+		r = read(fd, buff, BUFFER_SIZE);
 	}
 	free(buff);
 	buff = NULL;
-	return (r > 0 ? 1 : r);
+	return ((r > 0) + r * (r <= 0));
 }
 
-int		deliver_line(char **line, char **s, int r)
+int	deliver_line(char **line, char **s, int r)
 {
 	char	*tmp;
 	int		p;
@@ -85,12 +88,12 @@ int		deliver_line(char **line, char **s, int r)
 **	or 0 if 'c' is not found.
 */
 
-int		ft_chrpos(char const *s, char c)
+int	ft_chrpos(char const *s, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i] && s[i] != c)
 		i++;
-	return (s[i] ? ++i : 0);
+	return ((i + 1) * (s[i] != 0));
 }

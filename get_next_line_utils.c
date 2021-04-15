@@ -6,7 +6,7 @@
 /*   By: jpizarro <jpizarro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 00:53:48 by jpizarro          #+#    #+#             */
-/*   Updated: 2020/05/17 20:18:17 by jpizarro         ###   ########.fr       */
+/*   Updated: 2021/04/15 10:47:35 by jpizarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ size_t	ft_strlen(char const *s)
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	const unsigned char *s;
+	const unsigned char	*s;
 	unsigned char		*d;
 
 	if (dst == src || !n)
@@ -57,9 +57,10 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 char	*ft_strdup(char const *s1)
 {
-	char *s;
+	char	*s;
 
-	if (!(s = malloc(ft_strlen(s1) + 1)))
+	s = malloc(ft_strlen(s1) + 1);
+	if (!s)
 		return (NULL);
 	ft_memcpy(s, s1, ft_strlen(s1) + 1);
 	return (s);
@@ -80,7 +81,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	if (!(s = malloc(len1 + len2 + 1)))
+	s = malloc(len1 + len2 + 1);
+	if (!s)
 		return (NULL);
 	ft_memcpy(s, s1, len1);
 	ft_memcpy(s + len1, s2, len2);
@@ -96,16 +98,20 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	str[len + 1];
+	char	*str;
 	size_t	slen;
 
 	if (!s)
 		return (NULL);
-	if (start > (slen = ft_strlen(s)))
+	slen = ft_strlen(s);
+	if (start > slen)
 		return (ft_strdup(""));
 	if (len > slen - start)
 		len = slen - start;
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
 	ft_memcpy(str, s + start, len + 1);
 	str[len] = 0;
-	return (ft_strdup(str));
+	return (str);
 }
